@@ -35,9 +35,7 @@ public class AdministratorRepository {
 	public void insert(Administrator administrator) {
 		String sql = "INSERT INTO administrators (name,mailAddress, password) "
 				   + "VALUES(:name, :mailAddress, :password)";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("name", name)
-                .addValue("mailAddress", mailAddress)
-                .addValue("password", password);  //ここが違う？　　//値が入っていない？ //p21
+		SqlParameterSource param = new BeanPropertySqlParameterSource(sql);  //ここが違う？　　//値が入っていない？ //p21
 		template.update(sql, param);
 	}
 
