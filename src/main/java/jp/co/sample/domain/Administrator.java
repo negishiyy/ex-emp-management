@@ -1,19 +1,20 @@
 //entity
+//管理者情報を表すドメインクラス
 
 package jp.co.sample.domain;
 
 public class Administrator {
-	private Integer serial;
+	private Integer id;
 	private String name;
 	private String mailAddress;
 	private String password;
 	
 	
-	public Integer getSerial() {
-		return serial;
+	public Integer getId() {
+		return id;
 	}
-	public void setSerial(Integer serial) {
-		this.serial = serial;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;
@@ -36,7 +37,7 @@ public class Administrator {
 	
 	@Override
 	public String toString() {
-		return "Administrator [serial=" + serial + ", name=" + name + ", mailAddress=" + mailAddress + ", password="
+		return "Administrator [id=" + id + ", name=" + name + ", mailAddress=" + mailAddress + ", password="
 				+ password + "]";
 	}
 	
