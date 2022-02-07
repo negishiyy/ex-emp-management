@@ -9,7 +9,7 @@ public class Administrator {
 	private String mailAddress;
 	private String password;
 	
-	Administrator(){
+	public Administrator(){
 		
 	}
 	
