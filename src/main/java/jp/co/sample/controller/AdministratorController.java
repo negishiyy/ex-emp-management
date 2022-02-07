@@ -35,6 +35,7 @@ public class AdministratorController {
 	
 	@RequestMapping("/insert")     
 	private String insert(InsertAdministratorForm form) {
+		Administrator administrator = new Administrator();
 		BeanUtils.copyProperties(form, administrator);
 		administratorService.insert(administrator);
 		
@@ -59,7 +60,6 @@ public class AdministratorController {
 	@RequestMapping("/login")
 	public String login(LoginForm form, Model model) {
 		Administrator loginInfo =  administratorService.login(form.getMailAddress(), form.getPassword());
-           return loginInfo;
            
            if(loginInfo == null) {
         	   model.addAttribute("loginError" ,"メールアドレスまたはパスワードが不正です。");

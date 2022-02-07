@@ -33,16 +33,17 @@ public class AdministratorRepository {
 	private NamedParameterJdbcTemplate template;
 
 	public void insert(Administrator administrator) {
-		String sql = "INSERT INTO administrators (name,mailAddress, password) "
+		String sql = "INSERT INTO administrators (name,mail_address, password) "
 				   + "VALUES(:name, :mailAddress, :password)";
-		SqlParameterSource param = new BeanPropertySqlParameterSource(sql);  //ここが違う？　　//値が入っていない？ //p21
+		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator); 
 		template.update(sql, param);
 	}
 
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password){
-		String sql = "SELECT id, name, mailAddress, password FROM administrators"
+		Administrator administrator = new Administrator();
+		String sql = "SELECT id, name, mail_address, password FROM administrators"
 				   + "WHERE mailAddress = :mailAddress, password = :password";
-		SqlParameterSource param = new BeanPropertySqlParameterSource(sql);
+		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
 
 		List<Administrator> administratorList = template.query(sql, param, ADMINISTRATOR_ROW_MAPPER);
 		if (administratorList.size() == 0) {

@@ -40,10 +40,14 @@
 							</div>
 							<div class="form-group">
 								<label for="mailAddress">メールアドレス:</label>
+								<span th:if="${loginInfo == null}" th:text="${loginError}">dummy</span>
+								<span th:unless="${loginInfo == null}" th:text="${loginError}">dummy</span>
 								<input type="text" name="mailAddress" th:field="*{mailAddress}" id="mailAddress" class="form-control" placeholder="Email">
 							</div>
 							<div class="form-group">
 								<label for="inputPassword">パスワード:</label>
+								<span th:if="${loginInfo == null}" th:text="${loginError}">dummy</span>
+								<span th:unless="${loginInfo == null}" th:text="${loginError}">dummy</span>
 								<input type="password" name="password" th:field="*{password}" id="inputPassword" class="form-control" placeholder="Password">
 							</div>
 							<div class="form-group">
