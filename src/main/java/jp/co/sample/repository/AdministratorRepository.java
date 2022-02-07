@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
@@ -22,7 +23,7 @@ public class AdministratorRepository {
 	private static final RowMapper<Administrator> ADMINISTRATOR_ROW_MAPPER = (rs, i)->{
 		Administrator administrator = new Administrator();
 		administrator.setId(rs.getInt("Id"));
-		administrator.setName(rs.getString("Name"));
+		administrator.setName(rs.getString("name"));
 		administrator.setMailAddress(rs.getString("mailAddress"));
 		administrator.setPassword(rs.getString("password"));
 		return administrator;
@@ -32,9 +33,11 @@ public class AdministratorRepository {
 	private NamedParameterJdbcTemplate template;
 
 	public void insert(Administrator administrator) {
-		String sql = "INSERT INTO administrators (id, name,mailAddress, password) "
-				   + "VALUES(:id, :name, :mailAddress, :password)";
-		SqlParameterSource param = new BeanPropertySqlParameterSource(sql);
+		String sql = "INSERT INTO administrators (name,mailAddress, password) "
+				   + "VALUES(:name, :mailAddress, :password)";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", name)
+                .addValue("mailAddress", mailAddress)
+                .addValue("password", password);  //ここが違う？　　//値が入っていない？ //p21
 		template.update(sql, param);
 	}
 

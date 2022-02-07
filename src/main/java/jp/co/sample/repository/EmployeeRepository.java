@@ -1,3 +1,6 @@
+//employee repository
+//employees テーブルを操作するリポジトリ
+
 package jp.co.sample.repository;
 
 import java.util.ArrayList;
