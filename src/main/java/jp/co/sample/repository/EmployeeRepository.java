@@ -32,7 +32,7 @@ public class EmployeeRepository {
 		employee.setAddress(rs.getString("address"));
 		employee.setTelephone(rs.getString("telephone"));
 		employee.setSalary(rs.getInt("salary"));
-		employee.setCharacteristics(rs.getString("characteristic"));
+		employee.setCharacteristics(rs.getString("characteristics"));
 		employee.setDependentsCount(rs.getInt("dependents_count"));
 		return employee;
 	};
@@ -41,8 +41,8 @@ public class EmployeeRepository {
 	private NamedParameterJdbcTemplate template;
 
 	public List<Employee> findAll(){
-		String sql = "SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristic, department_count"
-				+ "FROM employees ORDER BY hire_date;";
+		String sql = "SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependents_count"
+				+ " FROM employees ORDER BY hire_date;";
 
 		List<Employee> employeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
 		if(employeeList.size() == 0) {
@@ -52,8 +52,8 @@ public class EmployeeRepository {
 	}
 
 	public Employee load(Integer id) {
-		String sql ="SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristic, department_count\r\n"
-				+ "FROM employees WHERE id = :id;";
+		String sql ="SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependents_count"
+				+ " FROM employees WHERE id = :id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 
 		try {
@@ -64,8 +64,8 @@ public class EmployeeRepository {
 	}
 
 	public void update(Employee employee) {
-		String sql="UPDATE employees SET name=:name, image=:image, gender=:gender, hire_date=:hire_date, mail_address=:mail_address,zip_code=:zip_code,address=:address,telephone=:telephone,salary=:salary,characteristic=:characteristic,dependents_count=:dependents_count"
-				+ "WHERE NOT id=:id;";
+		String sql="UPDATE employees SET name=:name, image=:image, gender=:gender, hire_date=:hire_date, mail_address=:mail_address,zip_code=:zip_code,address=:address,telephone=:telephone,salary=:salary,characteristics=:characteristics,dependents_count=:dependents_count"
+				+ " WHERE NOT id=:id;";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
 		template.update(sql, param);
 		

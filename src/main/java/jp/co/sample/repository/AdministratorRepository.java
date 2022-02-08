@@ -41,8 +41,8 @@ public class AdministratorRepository {
 
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password){
 		Administrator administrator = new Administrator();
-		String sql = "SELECT id, name, mail_address, password FROM administrators"
-				   + "WHERE mailAddress = :mailAddress, password = :password";
+		String sql = "SELECT id, name, mail_address, password FROM administrators "
+				   + "WHERE mail_address = :mailAddress AND password = :password";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
 
 		List<Administrator> administratorList = template.query(sql, param, ADMINISTRATOR_ROW_MAPPER);
