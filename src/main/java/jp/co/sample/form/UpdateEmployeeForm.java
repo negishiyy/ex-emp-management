@@ -1,5 +1,7 @@
 package jp.co.sample.form;
 
+import javax.validation.constraints.NotNull;
+
 public class UpdateEmployeeForm {
 	
 	private String id;

@@ -3,6 +3,9 @@
 
 package jp.co.sample.form;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 public class LoginForm {
 	
 	private String mailAddress;
