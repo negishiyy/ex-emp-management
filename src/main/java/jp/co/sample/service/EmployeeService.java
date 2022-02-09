@@ -28,5 +28,11 @@ public class EmployeeService {
 		return employeeRepository.load(id);
 		
 	}
+	
+	public void update(Employee employee) {
+          employeeRepository.update(employee);
+	}
+	
+	
 
 }

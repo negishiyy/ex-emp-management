@@ -47,9 +47,10 @@ public class EmployeeController {
 	
 	@RequestMapping("/update")
 	public String update(UpdateEmployeeForm form) {
-		employeeService.showDetail(Integer.parseInt());
+	    Employee employee = employeeService.showDetail(Integer.parseInt(form.getId()));		
+		employeeService.update(employee);
 		
-		
+		return "redirect:/employee/showList";
 	}
 
 	
