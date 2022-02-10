@@ -1,10 +1,13 @@
 package jp.co.sample.form;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class UpdateEmployeeForm {
 	
 	private String id;
+	
+	@NotBlank(message="扶養人数が0人の場合でも「0」を入力してください")
 	private String dependentsCount;
 	
 	

@@ -2,9 +2,14 @@
 
 package jp.co.sample.form;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 public class InsertAdministratorForm {
 	
+	@NotBlank(message="名前は必須です")
 	private String name;
+	@Email(message="Eメール形式が不正です")
 	private String mailAddress;
 	private String password;
 	

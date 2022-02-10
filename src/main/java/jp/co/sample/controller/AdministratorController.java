@@ -1,5 +1,7 @@
 package jp.co.sample.controller;
 
+import java.lang.ProcessBuilder.Redirect;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
@@ -10,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ch.qos.logback.core.joran.util.beans.BeanUtil;
 import jp.co.sample.domain.Administrator;
@@ -36,7 +39,12 @@ public class AdministratorController {
 	}
 
 	@RequestMapping("/insert")     
-	private String insert(InsertAdministratorForm form) {
+	private String insert(@Validated InsertAdministratorForm form, BindingResult result, RedirectAttributes redirectAttributes) {
+
+		if(result.hasErrors()) {
+			return toInsert();
+		}
+		
 		Administrator administrator = new Administrator();
 		BeanUtils.copyProperties(form, administrator);
 		administratorService.insert(administrator);

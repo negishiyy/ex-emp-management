@@ -44,6 +44,7 @@
 											氏名を入力してください
 										</label>
 										<input type="text" name="name" th:field="*{name}" id="name" class="form-control" placeholder="山田太郎">
+										<div th:errors="*{name}" style="color: red;">error</div>
 									</div>
 								</div>
 							</div>
